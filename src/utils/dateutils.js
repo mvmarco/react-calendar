@@ -1,4 +1,4 @@
-import { DATE, DAYSINWEEK, WEEKSINYEAR } from "./constantsCalendar";
+import { DATE, DAYSINMONTH, DAYSINWEEK, MONTHSINYEAR, WEEKSINYEAR } from "./constantsCalendar";
 
 export const checkLeapYear = (year) => {
   return year % 100 === 0 ? year % 400 === 0 : year % 400 === 0;
@@ -45,7 +45,21 @@ const generateDateGrid = () => {
   );
 
   const startDayOfTheYear = calcFirstDayofYear(DATE.getFullYear());
-  
-  // To populate the first week of the grid
 
+  // To populate the first week of the grid
+  for (let i = 0; 1 < startDayOfTheYear; i++) {
+    dateGrid[0][i][0] = DAYSINMONTH[11] - (startDayOfTheYear - 1) + i;
+  }
+
+  let weekValue = 0, k = startDayOfTheYear;
+  for(let i = 0; i < MONTHSINYEAR; i++) {
+    for(let j = 0; j < DAYSINMONTH[i]; j++) {
+      dateGrid[weekValue][k][0] = j+1;
+      k++;
+      if(k === DAYSINWEEK) {
+        k = 0;
+        weekValue++
+      }
+    }
+  }
 };
