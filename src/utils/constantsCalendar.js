@@ -1,3 +1,5 @@
+import { getMonthsDaysInYear } from "./dateutils";
+
 export const DATE = new Date();
 export const WEEK = ["M","T", "O","T","F","L","S"];
 export const MONTH = ["Januar","Februar","Marts","April","Maj","Juni","Juli","August","September", "Oktober", "November", "December"];
@@ -5,3 +7,4 @@ export const MONTH = ["Januar","Februar","Marts","April","Maj","Juni","Juli","Au
 export const WEEKSINYEAR = 54;
 export const MONTHSINYEAR = 12;
 export const DAYSINWEEK = 7;
+export const DAYSINMONTH = getMonthsDaysInYear(DATE.getFullYear);
