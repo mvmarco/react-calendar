@@ -37,7 +37,7 @@ const calcFirstDayofYear = (y, M = 0, k = 1) => {
   return T % 7;
 };
 
-const generateDateGrid = () => {
+export const generateDateGrid = () => {
   // 54 rows, weeks in a year that will be filled by the second function
   const dateGrid = Array.from({ length: WEEKSINYEAR }, (_) =>
     // 7 columns, days in a week
@@ -62,4 +62,10 @@ const generateDateGrid = () => {
       }
     }
   }
+
+  // To populate the last row of the date grid
+  for(let i = k; i < DAYSINWEEK; i++) {
+    dateGrid[weekValue][i][0] = i - k + 1;
+  };
+  return dateGrid;
 };
