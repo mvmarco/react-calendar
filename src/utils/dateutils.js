@@ -1,8 +1,51 @@
-export const checkLeapYear = (year) =>  {
-  return (year % 100 === 0) ? (year % 400 === 0) : (year % 400 === 0);
-}
+import { DATE, DAYSINWEEK, WEEKSINYEAR } from "./constantsCalendar";
 
-export const getMonthsDaysInYear = (year) => {
-  return [31, checkLeapYear(year) ? 29 : 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+export const checkLeapYear = (year) => {
+  return year % 100 === 0 ? year % 400 === 0 : year % 400 === 0;
 };
 
+export const getMonthsDaysInYear = (year) => {
+  return [
+    31,
+    checkLeapYear(year) ? 29 : 28,
+    31,
+    30,
+    31,
+    30,
+    31,
+    31,
+    30,
+    31,
+    30,
+    31,
+  ];
+};
+
+// Zeller's rule: finding the day of a particular date in the calendar in the history
+const calcFirstDayofYear = (y, M = 0, k = 1) => {
+  const m = ((M + 10) % 12) + 1;
+  const D = (y % 100) - (m > 10 ? 1 : 0);
+  const C = Math.floor(y / 100);
+  const F =
+    k +
+    Math.floor((13 * m - 1) / 5) +
+    D +
+    Math.floor(D / 4) +
+    Math.floor(C / 4) -
+    2 * C;
+  const T = F > 0 ? F : (F - (Math.floor(F) + 2) * 7) % 7;
+  return T % 7;
+};
+
+const generateDateGrid = () => {
+  // 54 rows, weeks in a year that will be filled by the second function
+  const dateGrid = Array.from({ length: WEEKSINYEAR }, (_) =>
+    // 7 columns, days in a week
+    Array.from({ length: DAYSINWEEK }, (_) => [1])
+  );
+
+  const startDayOfTheYear = calcFirstDayofYear(DATE.getFullYear());
+  
+  // To populate the first week of the grid
+
+};
