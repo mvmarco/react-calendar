@@ -41,9 +41,13 @@ const Row = styled.div`
 `;
 
 const Wrapper = styled.div`
-  display: flex;
-  border-bottom: 1px solid #c7c7c7;
-  height: 24px;
+position: fixed;
+width: 100%;
+top: 89px;
+overflow: scroll;
+height: calc(100vh - 86px);
+scroll-snap-type: proximity;
+scroll-snap-type: y proximity;
 `;
 
 export default App;

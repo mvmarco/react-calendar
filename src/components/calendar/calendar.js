@@ -2,6 +2,7 @@ import { DAYSINWEEK, WEEKSINYEAR } from "../../utils/constantsCalendar";
 import { generateDateGrid } from "../../utils/dateutils";
 import DateComponent from "./date";
 import MonthComponent from "./month";
+import styled from "styled-components";
 
 const CalendarComponent = () => {
   const dateGrid = generateDateGrid();
@@ -19,13 +20,13 @@ const CalendarComponent = () => {
       }
       weekRow.push(
         <DateComponent
-          value={[dateGrid][weekIndex][dayIndex][0]}
+          value={dateGrid[weekIndex][dayIndex][0]}
           day={dayIndex}
           month={firstDayInMonth.length}
         />
       );
     }
-    weekRowValue.push(<div>{weekRow}</div>);
+    weekRowValue.push(<Week>{weekRow}</Week>);
   }
 
   let currentMonth = 1,
@@ -47,5 +48,11 @@ const CalendarComponent = () => {
     });
   return monthRowFunction;
 };
+
+// STYLES
+const Week = styled.div`
+display: flex;
+scroll-snap-align: start;
+`;
 
 export default CalendarComponent;

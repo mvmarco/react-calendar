@@ -8,6 +8,7 @@ const MonthComponent = (props) => {
 };
 // STYLES
 const Months = styled.div`
-
+  scroll-snap-align: start;
+  color: #e6e5e6;
 `;
 export default MonthComponent;

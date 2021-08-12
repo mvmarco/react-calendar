@@ -47,7 +47,7 @@ export const generateDateGrid = () => {
   const startDayOfTheYear = calcFirstDayofYear(DATE.getFullYear());
 
   // To populate the first week of the grid
-  for (let i = 0; 1 < startDayOfTheYear; i++) {
+  for (let i = 0; i < startDayOfTheYear; i++) {
     dateGrid[0][i][0] = DAYSINMONTH[11] - (startDayOfTheYear - 1) + i;
   }
 
@@ -68,4 +68,5 @@ export const generateDateGrid = () => {
     dateGrid[weekValue][i][0] = i - k + 1;
   };
   return dateGrid;
+
 };
