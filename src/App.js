@@ -2,6 +2,7 @@ import GlobalStyle from "./styles/GlobalStyle";
 import styled from "styled-components";
 import {MONTH, DATE, WEEK } from "./utils/constantsCalendar";
 import DayComponent from "./components/calendar/day";
+import CalendarComponent from "./components/calendar/calendar";
 
 function App() {
   return (
@@ -15,9 +16,14 @@ function App() {
           <DayComponent day={week} />
         ))}
       </Row>
+      <Wrapper>
+        <CalendarComponent />
+      </Wrapper>
     </Nav>
   );
 }
+
+// STYLES
 const Nav = styled.div`
   color: black;
   box-shadow: 0px 0px 1px 0px #c7c7c7;
@@ -33,4 +39,11 @@ const Row = styled.div`
   border-bottom: 1px solid #c7c7c7;
   height: 24px;
 `;
+
+const Wrapper = styled.div`
+  display: flex;
+  border-bottom: 1px solid #c7c7c7;
+  height: 24px;
+`;
+
 export default App;

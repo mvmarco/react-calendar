@@ -1,6 +1,7 @@
 import { DAYSINWEEK, WEEKSINYEAR } from "../../utils/constantsCalendar";
 import { generateDateGrid } from "../../utils/dateutils";
 import DateComponent from "./date";
+import MonthComponent from "./month";
 
 const CalendarComponent = () => {
   const dateGrid = generateDateGrid();
@@ -9,11 +10,11 @@ const CalendarComponent = () => {
   const weekRowValue = [];
 
   //from 0 to 54
-  for (let weekIndex = 0; i < WEEKSINYEAR; i++) {
+  for (let weekIndex = 0; weekIndex < WEEKSINYEAR; weekIndex++) {
     let weekRow = [];
     // from 0 to 7
-    for (let dayIndex = 0; dateIndex < DAYSINWEEK; dayIndex++) {
-      if (dateGrid[weekIndex][dateIndex][0] === 1) {
+    for (let dayIndex = 0; dayIndex < DAYSINWEEK; dayIndex++) {
+      if (dateGrid[weekIndex][dayIndex][0] === 1) {
         firstDayInMonth.push(weekIndex);
       }
       weekRow.push(
@@ -30,7 +31,24 @@ const CalendarComponent = () => {
   // 138
   let currentMonth = 1,
     monthRow = [];
-  return <div></div>;
+
+  const monthRowFunction = Array(WEEKSINYEAR)
+    .fill(1)
+    .map((val, index) => {
+      if(index && index === firstDayInMonth[currentMonth]) {
+        const monthValue = (
+          <MonthComponent mid={currentMonth - 1}>
+            {monthRow}
+          </MonthComponent>
+        );
+        currentMonth++;
+        monthRow = [weekRowValue[currentMonth]];
+        return monthValue;
+      } else {
+        monthRow.push(weekRowValue[index])
+      }
+    })
+  return monthRow;
 };
 
 export default CalendarComponent;
