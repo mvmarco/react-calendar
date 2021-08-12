@@ -42,7 +42,9 @@ const CalendarComponent = ({ setActiveMonth, activeMonth }) => {
     .map((val, index) => {
       if (index && index === firstDayInMonth[currentMonth]) {
         const monthValue = (
-          <MonthComponent mid={currentMonth - 1}>{monthRow}</MonthComponent>
+          <MonthComponent mid={currentMonth - 1} onVisible={setActiveMonth}>
+            {monthRow}
+          </MonthComponent>
         );
         currentMonth++;
         monthRow = [weekRowValue[index]];
@@ -56,8 +58,8 @@ const CalendarComponent = ({ setActiveMonth, activeMonth }) => {
 
 // STYLES
 const Week = styled.div`
-display: flex;
-scroll-snap-align: start;
+  display: flex;
+  scroll-snap-align: start;
 `;
 
 export default CalendarComponent;
