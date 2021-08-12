@@ -37,11 +37,11 @@ const calcFirstDayofYear = (y, M = 0, k = 1) => {
   return T % 7;
 };
 
-export const generateDateGrid = () => {
+export const generateDateGrid = (activeMonth) => {
   // 54 rows, weeks in a year that will be filled by the second function
   const dateGrid = Array.from({ length: WEEKSINYEAR }, (_) =>
     // 7 columns, days in a week
-    Array.from({ length: DAYSINWEEK }, (_) => [1])
+    Array.from({ length: DAYSINWEEK }, (_) => [1, false])
   );
 
   const startDayOfTheYear = calcFirstDayofYear(DATE.getFullYear());
@@ -51,10 +51,13 @@ export const generateDateGrid = () => {
     dateGrid[0][i][0] = DAYSINMONTH[11] - (startDayOfTheYear - 1) + i;
   }
 
-  let weekValue = 0, k = startDayOfTheYear;
+  let weekValue = 0,
+    k = startDayOfTheYear;
+
   for(let i = 0; i < MONTHSINYEAR; i++) {
     for(let j = 0; j < DAYSINMONTH[i]; j++) {
       dateGrid[weekValue][k][0] = j+1;
+      dateGrid[weekValue][k][1] = i === activeMonth;
       k++;
       if(k === DAYSINWEEK) {
         k = 0;

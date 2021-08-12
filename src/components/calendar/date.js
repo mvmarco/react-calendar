@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { DATE, MONTH } from "../../utils/constantsCalendar";
 
-const DateComponent = ({ value, day, month }) => {
+const DateComponent = ({ value, day, month, active }) => {
   console.log("Xxxxxxxxx", MONTH[month - 1]);
   console.log("YYYYYYY",MONTH[month - 1].substr(0,2));
   console.log(value);
@@ -15,14 +15,10 @@ let dateStyle = false;
     } 
   }
   return (
-    <Date className={!day ? "sunday" : ""}>
+    <Date className={!day ? "sunday" : ""} className={active ? "active-month" : ""}>
       <DateBox>
         <Text className={dateStyle ? "active" : ""}>{value}</Text>
-        {value === 1 ? (
-          <Month>
-            {MONTH[month - 1].substr(0,3)}
-          </Month>
-        ): null}
+        {value === 1 ? <Month>{MONTH[month - 1].substr(0, 3)}</Month> : null}
       </DateBox>
     </Date>
   );
@@ -42,6 +38,10 @@ box-sizing: border-box;
 }
 .sunday {
   background-color: #f5f5f5;
+}
+.active-month {
+  transition: color 0.3s ease-in;
+  color: black;
 }
 
 `;

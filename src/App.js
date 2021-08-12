@@ -3,8 +3,10 @@ import styled from "styled-components";
 import {MONTH, DATE, WEEK } from "./utils/constantsCalendar";
 import DayComponent from "./components/calendar/day";
 import CalendarComponent from "./components/calendar/calendar";
+import { useState } from "react";
 
 function App() {
+  const [activeMonth, setActiveMonth] = useState(0);
   return (
     <Nav>
       <GlobalStyle />
@@ -17,7 +19,7 @@ function App() {
         ))}
       </Row>
       <Wrapper>
-        <CalendarComponent />
+        <CalendarComponent setActiveMonth={setActiveMonth} activeMonth={activeMonth} />
       </Wrapper>
     </Nav>
   );

@@ -3,9 +3,13 @@ import { generateDateGrid } from "../../utils/dateutils";
 import DateComponent from "./date";
 import MonthComponent from "./month";
 import styled from "styled-components";
+import { useState } from "react";
 
-const CalendarComponent = () => {
-  const dateGrid = generateDateGrid();
+const CalendarComponent = ({ setActiveMonth, activeMonth }) => {
+  // const [monthInViewport, setMonthInViewport] = useState(2);
+  // setActiveMonth(monthInViewport);
+
+  const dateGrid = generateDateGrid(activeMonth);
 
   const firstDayInMonth = [];
   const weekRowValue = [];
@@ -23,6 +27,7 @@ const CalendarComponent = () => {
           value={dateGrid[weekIndex][dayIndex][0]}
           day={dayIndex}
           month={firstDayInMonth.length}
+          active={dateGrid[weekIndex][dayIndex][1]}
         />
       );
     }
