@@ -1,7 +1,7 @@
-const DateComponent = () => {
+const DateComponent = ({value}) => {
   return(
     <div>
-    
+      {value}
     </div>
   )
 }

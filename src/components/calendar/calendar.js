@@ -28,27 +28,24 @@ const CalendarComponent = () => {
     weekRowValue.push(<div>{weekRow}</div>);
   }
 
-  // 138
   let currentMonth = 1,
     monthRow = [];
 
   const monthRowFunction = Array(WEEKSINYEAR)
     .fill(1)
     .map((val, index) => {
-      if(index && index === firstDayInMonth[currentMonth]) {
+      if (index && index === firstDayInMonth[currentMonth]) {
         const monthValue = (
-          <MonthComponent mid={currentMonth - 1}>
-            {monthRow}
-          </MonthComponent>
+          <MonthComponent mid={currentMonth - 1}>{monthRow}</MonthComponent>
         );
         currentMonth++;
-        monthRow = [weekRowValue[currentMonth]];
+        monthRow = [weekRowValue[index]];
         return monthValue;
       } else {
-        monthRow.push(weekRowValue[index])
+        monthRow.push(weekRowValue[index]);
       }
-    })
-  return monthRow;
+    });
+  return monthRowFunction;
 };
 
 export default CalendarComponent;
