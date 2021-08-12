@@ -11,9 +11,13 @@ const MonthComponent = (props) => {
       entries.forEach((entry)=> {
 
       })
+    }, {
+      root: null,
+      rootMargin: '0px',
+      threshold: 1
     })
   })
-  return <Months id={MONTH[props.mid]}>
+  return <Months id={MONTH[props.mid]} ref={monthRef}>
       {props.children}
 
   </Months>;
