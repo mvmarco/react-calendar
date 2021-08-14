@@ -1,10 +1,10 @@
 import styled from "styled-components";
-import { DATE, MONTH } from "../../utils/constantsCalendar";
+import { DATE, MONTH } from "./constantsCalendar";
 
 const DateComponent = ({ value, day, month, active }) => {
-  console.log("Xxxxxxxxx", MONTH[month - 1]);
-  console.log("YYYYYYY",MONTH[month - 1].substr(0,2));
-  console.log(value);
+ /* console.log("Xxxxxxxxx", month);
+  console.log("YYYYYYY", MONTH[month] &&MONTH[month].substr(0,2));
+  console.log(value);*/
 let dateStyle = false;
   if(value === DATE.getDate() && month > 0){
     if(
@@ -15,10 +15,10 @@ let dateStyle = false;
     } 
   }
   return (
-    <Date className={!day ? "sunday" : ""} className={active ? "active-month" : ""}>
+    <Date className={`${!day ? "sunday" : ""} ${active ? "active-month" : ""}`}>
       <DateBox>
         <Text className={dateStyle ? "active" : ""}>{value}</Text>
-        {value === 1 ? <Month>{MONTH[month - 1].substr(0, 3)}</Month> : null}
+        {value === 1 ? <Month>{MONTH[month - 1] && MONTH[month - 1].substr(0, 3)}</Month> : null}
       </DateBox>
     </Date>
   );

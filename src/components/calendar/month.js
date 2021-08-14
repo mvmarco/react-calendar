@@ -1,13 +1,13 @@
 import { useEffect, useRef } from "react";
 import styled from "styled-components";
-import { MONTH } from "../../utils/constantsCalendar";
+import { MONTH } from "./constantsCalendar";
 
 const MonthComponent = (props) => {
 
   const monthRef = useRef();
   // 214
-  useEffect(()=> {
-    obs = new IntersectionObserver((entries) => {
+ /* useEffect(()=> {
+    let obs = new IntersectionObserver((entries) => {
       entries.forEach((entry)=> {
 
       })
@@ -16,7 +16,7 @@ const MonthComponent = (props) => {
       rootMargin: '0px',
       threshold: 1
     })
-  })
+  })*/
   return <Months id={MONTH[props.mid]} ref={monthRef}>
       {props.children}
 
