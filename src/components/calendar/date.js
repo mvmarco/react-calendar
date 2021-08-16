@@ -2,48 +2,54 @@ import styled from "styled-components";
 import { DATE, MONTH } from "./constantsCalendar";
 
 const DateComponent = ({ value, day, month, active }) => {
- /* console.log("Xxxxxxxxx", month);
+  /* console.log("Xxxxxxxxx", month);
   console.log("YYYYYYY", MONTH[month] &&MONTH[month].substr(0,2));
   console.log(value);*/
-let dateStyle = false;
-  if(value === DATE.getDate() && month > 0){
-    if(
-      (value === 1 && month - 1 === DATE.getMonth())||
+  let dateStyle = false;
+  if (value === DATE.getDate() && month > 0) {
+    if (
+      (value === 1 && month - 1 === DATE.getMonth()) ||
       (value !== 1 && month - 1 === DATE.getMonth())
-     ) {
-        dateStyle = true;
-    } 
+    ) {
+      dateStyle = true;
+    }
   }
+  //820
   return (
     <Date className={`${!day ? "sunday" : ""} ${active ? "active-month" : ""}`}>
       <DateBox>
         <Text className={dateStyle ? "active" : ""}>{value}</Text>
-        {value === 1 ? <Month>{MONTH[month - 1] && MONTH[month - 1].substr(0, 3)}</Month> : null}
+        {value === 1 ? (
+          <Month
+            className={DATE.getMonth() === month - 1 ? "month-active" : ""}
+          >
+            {MONTH[month - 1] && MONTH[month - 1].substr(0, 3)}
+          </Month>
+        ) : null}
       </DateBox>
     </Date>
   );
 };
 // STYLES 820: active and sunday need to work, error in console
 const Date = styled.div`
-flex: 1;
-display: flex;
-flex-direction: column;
-height: 100px;
-border-right: 1px solid #e6e5e6;
-border-bottom: 1px solid #e6e5e6;
-padding: 8px 8px 0 0;
-box-sizing: border-box;
-&:last-child {
-  border-right: 0;
-}
-.sunday {
-  background-color: #f5f5f5;
-}
-.active-month {
-  transition: color 0.3s ease-in;
-  color: black;
-}
-
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  height: 100px;
+  border-right: 1px solid #e6e5e6;
+  border-bottom: 1px solid #e6e5e6;
+  padding: 8px 8px 0 0;
+  box-sizing: border-box;
+  &:last-child {
+    border-right: 0;
+  }
+  .sunday {
+    background-color: #f5f5f5;
+  }
+  .active-month {
+    transition: color 0.3s ease-in;
+    color: black;
+  }
 `;
 
 const DateBox = styled.div`
@@ -70,7 +76,11 @@ const Text = styled.span`
 `;
 
 const Month = styled.div`
-
-`;
+  height: 28px;
+  display: flex;
+  align-items: center`;
+  /* .month-active {
+    padding: 0 4px;
+  }; */
 
 export default DateComponent;

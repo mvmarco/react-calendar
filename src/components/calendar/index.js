@@ -3,10 +3,13 @@ import GlobalStyle from "../../styles/GlobalStyle";
 import CalendarComponent from "./calendar";
 import DayComponent from "./day";
 import { MONTH, DATE, WEEK } from "./constantsCalendar";
+import { useState } from "react";
 
 
-export default function Main({ setActiveMonth, activeMonth }) {
+export default function Main() {
+  const [activeMonth, setActiveMonth] = useState(0)
   return (
+    <>
     <Nav>
       <GlobalStyle />
       <h1>
@@ -24,6 +27,7 @@ export default function Main({ setActiveMonth, activeMonth }) {
         />
       </Wrapper>
     </Nav>
+    </>
   );
 }
 
