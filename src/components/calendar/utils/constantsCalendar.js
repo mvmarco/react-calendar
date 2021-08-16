@@ -1,7 +1,7 @@
 import { getMonthsDaysInYear } from "./dateutils";
 
 export const DATE = new Date();
-export const WEEK = ["Man","Tir", "Ons","Tor","Fre","Lør","Søn"];
+export const WEEK = ["M","T", "O","T","F","L","S"];
 export const MONTH = ["Januar","Februar","Marts","April","Maj","Juni","Juli","August","September", "Oktober", "November", "December"];
 
 export const WEEKSINYEAR = 54;

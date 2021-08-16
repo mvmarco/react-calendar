@@ -14,13 +14,14 @@ const DayComponent = (props) => {
 // STYLES
 const Day = styled.div`
   flex: 1;
-  justify-content: flex-end;
+  justify-content: center;
   display: flex;
   padding-right: 10px;
+  height: 80px;
 `;
 
 const Title = styled.div`
-  color: #8e8e8e;
+  color: white;
 `;
 
 export default DayComponent;

@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { DATE, MONTH } from "./constantsCalendar";
+import { DATE, MONTH } from "./utils/constantsCalendar";
 
 const DateComponent = ({ value, day, month, active }) => {
   /* console.log("Xxxxxxxxx", month);
@@ -23,7 +23,7 @@ const DateComponent = ({ value, day, month, active }) => {
           <Month
             className={DATE.getMonth() === month - 1 ? "month-active" : ""}
           >
-            {MONTH[month - 1] && MONTH[month - 1].substr(0, 3)}
+            {MONTH[month - 1] && MONTH[month - 1].substr(0, 0)}
           </Month>
         ) : null}
       </DateBox>
@@ -35,11 +35,13 @@ const Date = styled.div`
   flex: 1;
   display: flex;
   flex-direction: column;
-  height: 100px;
-  border-right: 1px solid #e6e5e6;
-  border-bottom: 1px solid #e6e5e6;
-  padding: 8px 8px 0 0;
+  height: 80px;
+  // borders around days of the month
+  /* border-right: 1px solid #e6e5e6;
+  border-bottom: 1px solid #e6e5e6; */
+  padding: 0px 10px 0px 0px;
   box-sizing: border-box;
+  background-color: #196262;
   &:last-child {
     border-right: 0;
   }
@@ -54,7 +56,7 @@ const Date = styled.div`
 
 const DateBox = styled.div`
   display: flex;
-  justify-content: flex-end;
+  justify-content: center;
   margin-bottom: 14px;
 `;
 

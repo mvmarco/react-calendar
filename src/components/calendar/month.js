@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react";
 import styled from "styled-components";
-import { DATE, MONTH } from "./constantsCalendar";
+import { DATE, MONTH } from "./utils/constantsCalendar";
 
 const MonthComponent = (props) => {
   const monthRef = useRef();
@@ -37,7 +37,7 @@ const MonthComponent = (props) => {
     </Months>
   );
 };
-// STYLES
+// STYLES month name 
 const Months = styled.div`
   scroll-snap-align: start;
   color: #e6e5e6;

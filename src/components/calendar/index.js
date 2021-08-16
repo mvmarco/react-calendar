@@ -2,7 +2,7 @@ import styled from "styled-components";
 import GlobalStyle from "../../styles/GlobalStyle";
 import CalendarComponent from "./calendar";
 import DayComponent from "./day";
-import { MONTH, DATE, WEEK } from "./constantsCalendar";
+import { MONTH, DATE, WEEK } from "./utils/constantsCalendar";
 import { useState } from "react";
 
 
@@ -13,7 +13,7 @@ export default function Main() {
     <Nav>
       <GlobalStyle />
       <h1>
-        {MONTH[7]} <Year>{DATE.getFullYear()}</Year>
+        {MONTH[7]} <Year style={{color: "white"}}>{DATE.getFullYear()}</Year>
       </h1>
       <Row>
         {WEEK.map((week) => (
@@ -33,11 +33,12 @@ export default function Main() {
 
 const Year = styled.span`
   font-weight: 100;
+  justify-content: center;
 `;
 const Row = styled.div`
   display: flex;
-  border-bottom: 1px solid #c7c7c7;
-  height: 24px;
+  /* border-bottom: 1px solid #c7c7c7; */
+  height: 28px;
 `;
 
 const Wrapper = styled.div`
@@ -51,9 +52,9 @@ const Wrapper = styled.div`
 `;
 // STYLES
 const Nav = styled.div`
-  color: black;
+  color: #20b295;
   box-shadow: 0px 0px 1px 0px #c7c7c7;
   position: fixed;
   width: 100%;
-  background-color: white;
+  background-color: #196262;
 `;
