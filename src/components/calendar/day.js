@@ -17,7 +17,6 @@ const Day = styled.div`
   justify-content: center;
   display: flex;
   padding-right: 10px;
-  height: 80px;
 `;
 
 const Title = styled.div`

@@ -1,23 +1,23 @@
 import styled from "styled-components";
 import GlobalStyle from "../../styles/GlobalStyle";
-import CalendarComponent from "./calendar";
-import DayComponent from "./day";
+import CalendarComponent from "./Calendar";
+import DayComponent from "./Day";
 import { MONTH, DATE, WEEK } from "./utils/constantsCalendar";
 import { useState } from "react";
 
 
-export default function Main() {
+export default function CalendarIndex() {
   const [activeMonth, setActiveMonth] = useState(0)
   return (
-    <>
+    <CalendarContainer>
     <Nav>
       <GlobalStyle />
       <h1>
-        {MONTH[7]} <Year style={{color: "white"}}>{DATE.getFullYear()}</Year>
+        {MONTH[activeMonth]} <Year style={{color: "white"}}>{DATE.getFullYear()}</Year>
       </h1>
       <Row>
-        {WEEK.map((week) => (
-          <DayComponent day={week} />
+        {WEEK.map((week,key) => (
+          <DayComponent day={week} key={key} />
         ))}
       </Row>
       <Wrapper>
@@ -27,7 +27,7 @@ export default function Main() {
         />
       </Wrapper>
     </Nav>
-    </>
+    </CalendarContainer>
   );
 }
 
@@ -57,4 +57,9 @@ const Nav = styled.div`
   position: fixed;
   width: 100%;
   background-color: #196262;
+`;
+
+const CalendarContainer = styled.div`
+
+
 `;

@@ -1,14 +1,12 @@
-
-import { useState } from "react";
-import Calendar from './components/calendar'
+import CalendarIndex from "./components/calendar/CalendarIndex";
+import OverviewIndex from "./components/overview/OverviewIndex";
 function App() {
-  const [activeMonth, setActiveMonth] = useState(0);
   return (
-    <Calendar activeMonth={activeMonth} setActiveMonth={setActiveMonth} />
+    <div className="App">
+      {/* <OverviewIndex /> */}
+      <CalendarIndex />
+    </div>
   );
 }
-
-
-
 
 export default App;

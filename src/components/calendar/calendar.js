@@ -1,9 +1,8 @@
 import { DAYSINWEEK, WEEKSINYEAR } from "./utils/constantsCalendar";
 import { generateDateGrid } from "./utils/dateutils";
-import DateComponent from "./date";
-import MonthComponent from "./month";
+import DateComponent from "./Date";
+import MonthComponent from "./Month";
 import styled from "styled-components";
-import { useState } from "react";
 
 const CalendarComponent = ({ setActiveMonth, activeMonth }) => {
   // const [monthInViewport, setMonthInViewport] = useState(2);
@@ -24,6 +23,7 @@ const CalendarComponent = ({ setActiveMonth, activeMonth }) => {
       }
       weekRow.push(
         <DateComponent
+          key={dayIndex+''+firstDayInMonth.length}
           value={dateGrid[weekIndex][dayIndex][0]}
           day={dayIndex}
           month={firstDayInMonth.length}
@@ -32,7 +32,7 @@ const CalendarComponent = ({ setActiveMonth, activeMonth }) => {
       );
     
     }
-    weekRowValue.push(<Week>{weekRow}</Week>);
+    weekRowValue.push(<Week key={weekIndex}>{weekRow}</Week>);
   }
 
   let currentMonth = 1,
@@ -43,7 +43,7 @@ const CalendarComponent = ({ setActiveMonth, activeMonth }) => {
     .map((val, index) => {
       if (index && index === firstDayInMonth[currentMonth]) {
         const monthValue = (
-          <MonthComponent mid={currentMonth - 1} onVisible={setActiveMonth}>
+          <MonthComponent key={index} mid={currentMonth - 1} onVisible={setActiveMonth} activeMonth={activeMonth}>
             {monthRow}
           </MonthComponent>
         );

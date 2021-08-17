@@ -5,20 +5,21 @@ const DateComponent = ({ value, day, month, active }) => {
   /* console.log("Xxxxxxxxx", month);
   console.log("YYYYYYY", MONTH[month] &&MONTH[month].substr(0,2));
   console.log(value);*/
-  let dateStyle = false;
-  if (value === DATE.getDate() && month > 0) {
-    if (
-      (value === 1 && month - 1 === DATE.getMonth()) ||
-      (value !== 1 && month - 1 === DATE.getMonth())
-    ) {
-      dateStyle = true;
+  function checkActive(){
+    console.log({ value, day, month, active, DATE: DATE.getDate() });
+    if (value === DATE.getDate() && month > 0) {
+      if ( month-1 === DATE.getMonth() ) {//0-11
+        return true;
+      }
     }
+    return false
   }
+  
   //820
   return (
-    <Date className={`${!day ? "sunday" : ""} ${active ? "active-month" : ""}`}>
+    <Date className={`${day===6 ? "sunday" : ""} ${active ? "active-month" : ""}`}>
       <DateBox>
-        <Text className={dateStyle ? "active" : ""}>{value}</Text>
+        <Text className={checkActive() ? "active" : ""}>{value}</Text>
         {value === 1 ? (
           <Month
             className={DATE.getMonth() === month - 1 ? "month-active" : ""}
@@ -45,10 +46,10 @@ const Date = styled.div`
   &:last-child {
     border-right: 0;
   }
-  .sunday {
+  &.sunday {
     background-color: #f5f5f5;
   }
-  .active-month {
+  &.active-month {
     transition: color 0.3s ease-in;
     color: black;
   }
@@ -57,7 +58,6 @@ const Date = styled.div`
 const DateBox = styled.div`
   display: flex;
   justify-content: center;
-  margin-bottom: 14px;
 `;
 
 const Text = styled.span`
@@ -66,7 +66,7 @@ const Text = styled.span`
   justify-content: center;
   display: flex;
   align-items: center;
-  .active {
+  &.active {
     background-color: #00ba91;
     text-align: center;
     border-radius: 20px;
