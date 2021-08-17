@@ -1,7 +1,7 @@
 import { DAYSINWEEK, WEEKSINYEAR } from "./utils/constantsCalendar";
 import { generateDateGrid } from "./utils/dateutils";
-import DateComponent from "./Date";
-import MonthComponent from "./Month";
+import DateComponent from "./DateComponent";
+import MonthComponent from "./MonthComponent";
 import styled from "styled-components";
 
 const CalendarComponent = ({ setActiveMonth, activeMonth }) => {

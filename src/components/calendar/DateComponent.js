@@ -47,11 +47,11 @@ const Date = styled.div`
     border-right: 0;
   }
   &.sunday {
-    background-color: #f5f5f5;
+    /* background-color: #f5f5f5; */
   }
   &.active-month {
     transition: color 0.3s ease-in;
-    color: black;
+    color: red;
   }
 `;
 
@@ -66,14 +66,16 @@ const Text = styled.span`
   justify-content: center;
   display: flex;
   align-items: center;
+  color: white;
   &.active {
     background-color: #00ba91;
     text-align: center;
     border-radius: 20px;
-    color: white;
+    color: #a0d3c8df !important;
     display: flex;
     align-items: center;
     justify-content: center;
+    font-weight: bold;
   }
 `;
 

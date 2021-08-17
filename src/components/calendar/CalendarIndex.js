@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import GlobalStyle from "../../styles/GlobalStyle";
-import CalendarComponent from "./Calendar";
-import DayComponent from "./Day";
+import CalendarComponent from "./CalendarComponent";
+import DayComponent from "./DayComponent";
 import { MONTH, DATE, WEEK } from "./utils/constantsCalendar";
 import { useState } from "react";
 
