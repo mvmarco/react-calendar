@@ -2,24 +2,30 @@ import styled from "styled-components";
 import { DATE, MONTH } from "./utils/constantsCalendar";
 
 const DateComponent = ({ value, day, month, active }) => {
-  /* console.log("Xxxxxxxxx", month);
-  console.log("YYYYYYY", MONTH[month] &&MONTH[month].substr(0,2));
-  console.log(value);*/
-  function checkActive(){
-    console.log({ value, day, month, active, DATE: DATE.getDate() });
+  //STATES
+
+  // FUNCTIONS
+  function checkActive() {
     if (value === DATE.getDate() && month > 0) {
-      if ( month-1 === DATE.getMonth() ) {//0-11
+      if (month - 1 === DATE.getMonth()) {
+        //0-11
+        console.log({ value, day, month, active, DATE: DATE.getDate() });
         return true;
       }
     }
-    return false
+    return false;
   }
-  
-  //820
+
+  function switchToActive(e) {
+    console.log(e.currentTarget)
+  }
+  console.log('check active:', active );
   return (
-    <Date className={`${day===6 ? "sunday" : ""} ${active ? "active-month" : ""}`}>
+    <Date
+      className={`${day === 6 ? "sunday" : ""} ${active ? "active-month" : ""}`}
+    >
       <DateBox>
-        <Text className={checkActive() ? "active" : ""}>{value}</Text>
+        <Text onClick={switchToActive} className={checkActive() ? "active" : ""}>{value}</Text>
         {value === 1 ? (
           <Month
             className={DATE.getMonth() === month - 1 ? "month-active" : ""}
@@ -47,11 +53,11 @@ const Date = styled.div`
     border-right: 0;
   }
   &.sunday {
-    /* background-color: #f5f5f5; */
+    /* background-color: #217373;  */
   }
   &.active-month {
     transition: color 0.3s ease-in;
-    color: red;
+    color: #b2b3b2;
   }
 `;
 
@@ -66,12 +72,13 @@ const Text = styled.span`
   justify-content: center;
   display: flex;
   align-items: center;
-  color: white;
+  padding: 20px;
+
   &.active {
     background-color: #00ba91;
     text-align: center;
-    border-radius: 20px;
-    color: #a0d3c8df !important;
+    border-radius: 16px;
+    color: #d5ece7df;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -82,8 +89,9 @@ const Text = styled.span`
 const Month = styled.div`
   height: 28px;
   display: flex;
-  align-items: center`;
-  /* .month-active {
+  align-items: center;
+`;
+/* .month-active {
     padding: 0 4px;
   }; */
 

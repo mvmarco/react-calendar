@@ -5,28 +5,30 @@ import DayComponent from "./DayComponent";
 import { MONTH, DATE, WEEK } from "./utils/constantsCalendar";
 import { useState } from "react";
 
-
 export default function CalendarIndex() {
-  const [activeMonth, setActiveMonth] = useState(0)
+  const [activeMonth, setActiveMonth] = useState(new Date().getMonth());
   return (
     <CalendarContainer>
-    <Nav>
       <GlobalStyle />
-      <h1>
-        {MONTH[activeMonth]} <Year style={{color: "white"}}>{DATE.getFullYear()}</Year>
-      </h1>
-      <Row>
-        {WEEK.map((week,key) => (
-          <DayComponent day={week} key={key} />
-        ))}
-      </Row>
+
+      <Nav>
+        <h1>
+          {MONTH[activeMonth]}{" "}
+          <Year style={{ color: "white" }}>{DATE.getFullYear()}</Year>
+        </h1>{" "}
+        <Row>
+          {WEEK.map((week, key) => (
+            <DayComponent day={week} key={key} />
+          ))}
+        </Row>
+      </Nav>
+
       <Wrapper>
         <CalendarComponent
           setActiveMonth={setActiveMonth}
           activeMonth={activeMonth}
         />
       </Wrapper>
-    </Nav>
     </CalendarContainer>
   );
 }
@@ -49,17 +51,17 @@ const Wrapper = styled.div`
   height: calc(100vh - 86px);
   scroll-snap-type: proximity;
   scroll-snap-type: y proximity;
+  margin-top: 20px;
 `;
+;
 // STYLES
 const Nav = styled.div`
   color: #20b295;
-  box-shadow: 0px 0px 1px 0px #c7c7c7;
   position: fixed;
   width: 100%;
   background-color: #196262;
 `;
 
 const CalendarContainer = styled.div`
-
-
+  color: #55887d;
 `;

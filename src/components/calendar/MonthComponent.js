@@ -40,6 +40,6 @@ const MonthComponent = (props) => {
 // STYLES month name 
 const Months = styled.div`
   scroll-snap-align: start;
-  color: #e6e5e6;
+  /* color: #2a8282; */
 `;
 export default MonthComponent;

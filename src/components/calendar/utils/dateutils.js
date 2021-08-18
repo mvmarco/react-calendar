@@ -1,7 +1,7 @@
 import { DATE, DAYSINMONTH, DAYSINWEEK, MONTHSINYEAR, WEEKSINYEAR } from "./constantsCalendar";
 
 export const checkLeapYear = (year) => {
-  return year % 100 === 0 ? year % 400 === 0 : year % 400 === 0;
+  return year % 100 === 0 ? year % 400 === 0 : year % 4 === 0;
 };
 
 export const getMonthsDaysInYear = (year) => {
@@ -44,8 +44,8 @@ export const generateDateGrid = (activeMonth) => {
     Array.from({ length: DAYSINWEEK }, (_) => [1, false])
   );
 
-  const startDayOfTheYear = calcFirstDayofYear(DATE.getFullYear());
-
+  const startDayOfTheYear = calcFirstDayofYear(DATE.getFullYear())-1;//hint of making start of the week Monday instead of initial Sunday
+  console.log(startDayOfTheYear)
   // To populate the first week of the grid
   for (let i = 0; i < startDayOfTheYear; i++) {
     dateGrid[0][i][0] = DAYSINMONTH[11] - (startDayOfTheYear - 1) + i;
