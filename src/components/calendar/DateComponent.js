@@ -1,35 +1,59 @@
-import styled from "styled-components";
-import { DATE, MONTH } from "./utils/constantsCalendar";
+import styled from 'styled-components';
+import { DATE, MONTH } from '../../Utils/constantsCalendar';
+import { useEffect, useState } from 'react';
 
-const DateComponent = ({ value, day, month, active }) => {
+const DateComponent = ({
+  day,
+  month,
+  date,
+  activeMonth,
+  setActive,
+  dateGrid,
+}) => {
   //STATES
+  const [className, setClassName] = useState('');
+  const [firstLoad, setFirstLoad] = useState(true);
+  let [value, active, activeDay, curmonth, year] = date;
 
   // FUNCTIONS
   function checkActive() {
-    if (value === DATE.getDate() && month > 0) {
+    
+    if (value === DATE.getDate() ) {
       if (month - 1 === DATE.getMonth()) {
-        //0-11
-        console.log({ value, day, month, active, DATE: DATE.getDate() });
-        return true;
+        if (activeDay || firstLoad) {
+          // console.log(activeDay,'active',value);
+          setClassName('active');
+        } else if (year === DATE.getFullYear()) {
+          
+          setClassName('current');
+        }
       }
+    } else if (activeDay) {
+      setClassName('active');
+    } else {
+      setClassName('');
     }
-    return false;
-  }
 
-  function switchToActive(e) {
-    console.log(e.currentTarget)
   }
-  console.log('check active:', active );
+  useEffect(() => {
+    checkActive();
+    setFirstLoad(false);
+  }, [value, activeDay, month, active, dateGrid]);
+
+  useEffect(() => {
+    checkActive();
+  }, []);
+
   return (
     <Date
-      className={`${day === 6 ? "sunday" : ""} ${active ? "active-month" : ""}`}
+      className={`${day === 6 ? 'sunday' : ''} ${active ? 'active-month' : ''}`}
     >
       <DateBox>
-        <Text onClick={switchToActive} className={checkActive() ? "active" : ""}>{value}</Text>
+        <Text onClick={setActive} className={className}>
+          {value}
+        </Text>
         {value === 1 ? (
-          <Month
-            className={DATE.getMonth() === month - 1 ? "month-active" : ""}
-          >
+          <Month className={activeMonth === month - 1 ? 'active-month' : ''}>
             {MONTH[month - 1] && MONTH[month - 1].substr(0, 0)}
           </Month>
         ) : null}
@@ -42,13 +66,13 @@ const Date = styled.div`
   flex: 1;
   display: flex;
   flex-direction: column;
-  height: 80px;
+  height: 50px;
   // borders around days of the month
   /* border-right: 1px solid #e6e5e6;
   border-bottom: 1px solid #e6e5e6; */
-  padding: 0px 10px 0px 0px;
+  /* padding: 0px 5px 0px 5px; */
   box-sizing: border-box;
-  background-color: #196262;
+  background-color: #146165;
   &:last-child {
     border-right: 0;
   }
@@ -57,7 +81,7 @@ const Date = styled.div`
   }
   &.active-month {
     transition: color 0.3s ease-in;
-    color: #b2b3b2;
+    color: rgba(136, 174, 180, 255);
   }
 `;
 
@@ -75,10 +99,19 @@ const Text = styled.span`
   padding: 20px;
 
   &.active {
-    background-color: #00ba91;
+    background-color: rgba(2, 179, 150, 255);
     text-align: center;
-    border-radius: 16px;
-    color: #d5ece7df;
+    border-radius: 10px;
+    color: rgba(163, 228, 218, 255);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+  }
+  &.current {
+    text-align: center;
+    border-radius: 10px;
+    color: red;
     display: flex;
     align-items: center;
     justify-content: center;

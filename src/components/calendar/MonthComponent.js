@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react";
 import styled from "styled-components";
-import { DATE, MONTH } from "./utils/constantsCalendar";
+import { DATE, MONTH } from "../../Utils/constantsCalendar";
 
 const MonthComponent = (props) => {
   const monthRef = useRef();
@@ -8,20 +8,21 @@ const MonthComponent = (props) => {
   useEffect(() => {
     let obs = new IntersectionObserver(
       (entries) => {
-        entries.forEach((entry) => {
-          if (entry.intersectionRatio >= 0.8) {
-            props.onVisible(props.mid);
+        entries.forEach((entry,index) => {
+          //console.log(props)
+          if (entry.intersectionRatio >= 0.7) {
+            props.setActiveMonth(props.mid);
           }
         });
       },
       {
-        root: null,
+        root: document.querySelector(".calendarContainer"),
         rootMargin: "0px",
-        threshold: 1,
+        threshold: 0.8,
       }
     );
     obs.observe(monthRef.current);
-  });
+  },[]);
 
   useEffect(() => {
     const monthRefValue = monthRef && monthRef.current;
